@@ -19,4 +19,4 @@ to parse svg and convert to xml file.
 
 If you directly want to use the jar , use as below:
 
-java -jar Svg2VectorAndroid-1.0.jar <SourceDirectoryPath>
+java -jar Svg2VectorAndroid-1.0.jar "SourceDirectoryPath"
