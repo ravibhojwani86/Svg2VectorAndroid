@@ -25,11 +25,11 @@ public class SvgFilesProcessor {
 	private String extensionSuffix;
 	
 	public SvgFilesProcessor(String sourceSvgDirectory) {
-		this(sourceSvgDirectory, sourceSvgDirectory+"/ProcessedSVG", "xml", "_svg");
+		this(sourceSvgDirectory, sourceSvgDirectory+"/ProcessedSVG", "xml", "");
 	}
 	
 	public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory) {
-		this(sourceSvgDirectory, destinationVectorDirectory, "xml", "_svg");
+		this(sourceSvgDirectory, destinationVectorDirectory, "xml", "");
 	}
 
 	public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory, String extension,
