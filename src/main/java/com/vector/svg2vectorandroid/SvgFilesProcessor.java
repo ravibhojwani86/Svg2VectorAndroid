@@ -21,23 +21,23 @@ public class SvgFilesProcessor {
 	
 	private Path sourceSvgPath;
 	private Path destinationVectorPath;
-	private String extention;
-	private String extentionSuffix;
+	private String extension;
+	private String extensionSuffix;
 	
 	public SvgFilesProcessor(String sourceSvgDirectory) {
-		this(sourceSvgDirectory, sourceSvgDirectory+"/ProcessedSVG", "xml", "_svg");
+		this(sourceSvgDirectory, sourceSvgDirectory+"/ProcessedSVG", "xml", "");
 	}
 	
 	public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory) {
-		this(sourceSvgDirectory, destinationVectorDirectory, "xml", "_svg");
+		this(sourceSvgDirectory, destinationVectorDirectory, "xml", "");
 	}
 
-	public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory, String extention,
-                             String extentionSuffix) {
+	public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory, String extension,
+                             String extensionSuffix) {
 		this.sourceSvgPath = Paths.get(sourceSvgDirectory);
 		this.destinationVectorPath = Paths.get(destinationVectorDirectory);
-		this.extention = extention;
-		this.extentionSuffix = extentionSuffix;
+		this.extension = extension;
+		this.extensionSuffix = extensionSuffix;
 	}
 	
 	public void process(){
@@ -97,7 +97,7 @@ public class SvgFilesProcessor {
 	private void convertToVector(Path source, Path target) throws IOException{
 		// convert only if it is .svg
 		if(source.getFileName().toString().endsWith(".svg")){
-			File targetFile = getFileWithXMlExtention(target, extention, extentionSuffix);
+			File targetFile = getFileWithXMlExtension(target, extension, extensionSuffix);
 			FileOutputStream fous = new FileOutputStream(targetFile);
 			Svg2Vector.parseSvgToXml(source.toFile(), fous);
 		} else {
@@ -105,7 +105,7 @@ public class SvgFilesProcessor {
 		}
     }
 	
-	private File getFileWithXMlExtention(Path target, String extention, String extentionSuffix){
+	private File getFileWithXMlExtension(Path target, String extension, String extensionSuffix){
 		String svgFilePath =  target.toFile().getAbsolutePath();
 		StringBuilder svgBaseFile = new StringBuilder();
 		int index = svgFilePath.lastIndexOf(".");
@@ -113,9 +113,9 @@ public class SvgFilesProcessor {
 			String subStr = svgFilePath.substring(0, index);
 			svgBaseFile.append(subStr);
 		}
-		svgBaseFile.append(null != extentionSuffix ? extentionSuffix : "");
+		svgBaseFile.append(null != extensionSuffix ? extensionSuffix : "");
 		svgBaseFile.append(".");
-		svgBaseFile.append(extention);
+		svgBaseFile.append(extension);
 		return new File(svgBaseFile.toString());	
 	}
 
