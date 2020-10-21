@@ -25,7 +25,7 @@ public class SvgFilesProcessor {
 	private String extensionSuffix;
 	
 	public SvgFilesProcessor(String sourceSvgDirectory) {
-		this(sourceSvgDirectory, sourceSvgDirectory+"/ProcessedSVG", "xml", "");
+		this(sourceSvgDirectory, sourceSvgDirectory+ File.pathSeparator + "ProcessedSVG", "xml", "");
 	}
 	
 	public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory) {
