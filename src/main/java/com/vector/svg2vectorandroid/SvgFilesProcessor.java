@@ -18,16 +18,16 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
  */
 
 public class SvgFilesProcessor {
-	
+
 	private Path sourceSvgPath;
 	private Path destinationVectorPath;
 	private String extension;
 	private String extensionSuffix;
-	
+
 	public SvgFilesProcessor(String sourceSvgDirectory) {
-		this(sourceSvgDirectory, sourceSvgDirectory+ File.pathSeparator + "ProcessedSVG", "xml", "");
+		this(sourceSvgDirectory, new File(new File(sourceSvgDirectory), "ProcessedSVG").getAbsolutePath(), "xml", "");
 	}
-	
+
 	public SvgFilesProcessor(String sourceSvgDirectory, String destinationVectorDirectory) {
 		this(sourceSvgDirectory, destinationVectorDirectory, "xml", "");
 	}
@@ -39,14 +39,14 @@ public class SvgFilesProcessor {
 		this.extension = extension;
 		this.extensionSuffix = extensionSuffix;
 	}
-	
+
 	public void process(){
 		try{
 			EnumSet<FileVisitOption> options = EnumSet.of(FileVisitOption.FOLLOW_LINKS);
 			//check first if source is a directory
 			if(Files.isDirectory(sourceSvgPath)){
 				Files.walkFileTree(sourceSvgPath, options, Integer.MAX_VALUE, new FileVisitor<Path>() {
-		
+
 					public FileVisitResult postVisitDirectory(Path dir,
 							IOException exc) throws IOException {
 						return FileVisitResult.CONTINUE;
@@ -58,7 +58,7 @@ public class SvgFilesProcessor {
 						if(dir.equals(destinationVectorPath)){
 							return FileVisitResult.SKIP_SUBTREE;
 						}
-						
+
 						CopyOption[] opt = new CopyOption[]{COPY_ATTRIBUTES, REPLACE_EXISTING};
 						Path newDirectory = destinationVectorPath.resolve(sourceSvgPath.relativize(dir));
 						try{
@@ -71,7 +71,7 @@ public class SvgFilesProcessor {
 						return CONTINUE;
 					}
 
-		
+
 					public FileVisitResult visitFile(Path file,
 							BasicFileAttributes attrs) throws IOException {
 						convertToVector(file, destinationVectorPath.resolve(sourceSvgPath.relativize(file)));
@@ -87,13 +87,13 @@ public class SvgFilesProcessor {
 			} else {
 				System.out.println("source not a directory");
 			}
-			
+
 		} catch (IOException e){
 			System.out.println("IOException "+e.getMessage());
 		}
-		
+
 	}
-	
+
 	private void convertToVector(Path source, Path target) throws IOException{
 		// convert only if it is .svg
 		if(source.getFileName().toString().endsWith(".svg")){
@@ -104,7 +104,7 @@ public class SvgFilesProcessor {
 			System.out.println("Skipping file as its not svg "+source.getFileName().toString());
 		}
     }
-	
+
 	private File getFileWithXMlExtension(Path target, String extension, String extensionSuffix){
 		String svgFilePath =  target.toFile().getAbsolutePath();
 		StringBuilder svgBaseFile = new StringBuilder();
@@ -116,7 +116,7 @@ public class SvgFilesProcessor {
 		svgBaseFile.append(null != extensionSuffix ? extensionSuffix : "");
 		svgBaseFile.append(".");
 		svgBaseFile.append(extension);
-		return new File(svgBaseFile.toString());	
+		return new File(svgBaseFile.toString());
 	}
 
 }

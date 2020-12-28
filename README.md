@@ -15,7 +15,7 @@ SvgFilesProcessor processor = new SvgFilesProcessor("/Volumes/Development/Featur
 processor.process();
 ```
 
-This will create a new folder "ProcessedSvgs" inside source folder.
+This will create a new folder "ProcessedSVG" inside source folder.
 
 It uses studio ide class Svg2Vector class implementation ([reference](https://android.googlesource.com/platform/tools/base/+/master/sdk-common/src/main/java/com/android/ide/common/vectordrawable/Svg2Vector.java))
 to parse svg and convert to xml file.
@@ -25,3 +25,6 @@ If you directly want to use the jar , use as below:
 ```bash
 java -jar Svg2VectorAndroid-1.0.1.jar "SourceDirectoryPath"
 ```
+
+## Build instructions
+To build the project run `./gradlew fatJar` in the project root.
