@@ -1,10 +1,10 @@
-group 'geekyappz'
-version '1.0.1'
+version 'AS_4.2.1'
 
 apply plugin: 'java'
 
 repositories {
     maven { url 'https://maven.google.com' }
+    maven { url 'https://repo.spring.io/plugins-release/'}
     mavenCentral()
 }
 
@@ -25,6 +25,8 @@ task fatJar(type: Jar) {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'com.android.tools:sdk-common:26.3.1'
-    compile 'com.android.tools:common:26.3.1'
+    compile 'com.android.tools:sdk-common:27.2.1'
+    compile 'com.android.tools:common:27.2.1'
+    compile 'org.jetbrains.trove4j:trove4j:20160824'
+    compile 'commons-cli:commons-cli:1.4'
 }
