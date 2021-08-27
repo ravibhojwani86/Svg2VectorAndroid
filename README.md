@@ -11,14 +11,14 @@ Simply pass source directory path to SvgFilesProcessor and call process.
 
 ## API
 ```
-SvgFilesProcessor processor = new SvgFilesProcessor("./src", "./dist", "xml");
+SvgFilesProcessor processor = new SvgFilesProcessor("./src", "./dist", "xml", "optional-prefix");
 processor.process();
 ```
 
 If you directly want to use the jar:
 
 ```
-java -jar Svg2VectorAndroid-AS_4.2.1.jar -s ./src -o ./dist -e xml
+java -jar Svg2VectorAndroid-AS_4.2.1.jar -s ./src -o ./dist -e xml -p "optional-prefix"
 ```
 
 ### Options
@@ -28,6 +28,7 @@ java -jar Svg2VectorAndroid-AS_4.2.1.jar -s ./src -o ./dist -e xml
 | s         | true          | N/A       | Source folder             |
 | o         | false         | dist      | Destination folder        |
 | e         | false         | xml       | extension of new files    |
+| p         | false         | ""        | prefix of new files       |
 
 ## Build the project
 
