@@ -17,15 +17,12 @@ task fatJar(type: Jar) {
                 'Main-Class': 'com.vector.svg2vectorandroid.Runner'
     }
     baseName = project.name
-    doFirst {
-        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    }
     exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
     with jar
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'com.android.tools:sdk-common:27.1.1'
-    compile 'com.android.tools:common:27.1.1'
+    testImplementation group: 'junit', name: 'junit', version: '4.11'
+    implementation 'com.android.tools:sdk-common:27.1.1'
+    implementation 'com.android.tools:common:27.1.1'
 }
