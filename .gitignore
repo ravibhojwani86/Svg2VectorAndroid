@@ -36,3 +36,6 @@ captures/
 # IntelliJ
 *.iml
 .idea/
+
+# VSCode
+.vscode/

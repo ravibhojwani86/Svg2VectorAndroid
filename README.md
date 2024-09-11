@@ -18,7 +18,7 @@ processor.process();
 If you directly want to use the jar:
 
 ```
-java -jar Svg2VectorAndroid-AS_4.2.1.jar -s ./src -o ./dist -e xml -p "optional-prefix"
+java -jar Svg2VectorAndroid-31.6.1.jar -s ./src -o ./dist -e xml -p "optional-prefix"
 ```
 
 ### Options
@@ -35,4 +35,4 @@ java -jar Svg2VectorAndroid-AS_4.2.1.jar -s ./src -o ./dist -e xml -p "optional-
 ```
 ./gradlew fatJar
 ```
-This creates `./build/libs/Svg2VectorAndroid-AS_4.2.1.jar`
+This creates `./build/libs/Svg2VectorAndroid-31.6.1.jar`

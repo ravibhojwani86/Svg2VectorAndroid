@@ -1,4 +1,4 @@
-version 'AS_4.2.1'
+version '31.6.1'
 
 apply plugin: 'java'
 
