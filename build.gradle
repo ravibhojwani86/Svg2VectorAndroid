@@ -10,23 +10,24 @@ repositories {
 
 //create a single Jar with all dependencies
 task fatJar(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     manifest {
         attributes 'Implementation-Title': 'Svg2VectorAndroid',
                 'Implementation-Version': version,
                 'Main-Class': 'com.vector.svg2vectorandroid.Runner'
     }
-    baseName = project.name
+    archiveBaseName = project.name
     doFirst {
-        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+        from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     }
     exclude 'META-INF/*.RSA', 'META-INF/*.SF','META-INF/*.DSA'
     with jar
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'com.android.tools:sdk-common:27.2.1'
-    compile 'com.android.tools:common:27.2.1'
-    compile 'org.jetbrains.trove4j:trove4j:20160824'
-    compile 'commons-cli:commons-cli:1.4'
+    testImplementation group: 'junit', name: 'junit', version: '4.11'
+    implementation 'com.android.tools:sdk-common:31.6.0'
+    implementation 'com.android.tools:common:31.6.0'
+    implementation 'org.jetbrains.trove4j:trove4j:20160824'
+    implementation 'commons-cli:commons-cli:1.4'
 }

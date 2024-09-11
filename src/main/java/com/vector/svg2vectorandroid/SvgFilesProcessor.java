@@ -94,7 +94,12 @@ public class SvgFilesProcessor {
 		if (source.getFileName().toString().endsWith(".svg")) {
 			File targetFile = getTargetFile(target, extension, prefix);
 			FileOutputStream fous = new FileOutputStream(targetFile);
-			Svg2Vector.parseSvgToXml(source.toFile(), fous);
+			try {
+				Svg2Vector.parseSvgToXml(source, fous);
+			} catch (Exception e) {
+				System.err.println("Cannot convert file: " + source.getFileName());
+			}
+
 		} else {
 			// only alert about non-dotfiles
 			if (!source.getFileName().toString().startsWith(".")) {
